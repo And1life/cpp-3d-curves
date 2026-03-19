@@ -8,6 +8,7 @@
 #include "Ellipse.h"
 #include "Helix.h"
 
+// Function to print a point and derivative
 void printCurveInfo(const Curve& curve, double t)
 {
     Point3D point = curve.getPoint(t);
@@ -28,8 +29,10 @@ void printCurveInfo(const Curve& curve, double t)
 
 int main(int argc, char const *argv[])
 {
+    // Container for all curves
     std::vector<std::unique_ptr<Curve>> curves;    
 
+    // Fill the container with random curves
     curves.push_back(std::make_unique<Circle>(2.0));
     curves.push_back(std::make_unique<Circle>(3.0));
     curves.push_back(std::make_unique<Ellipse>(3.0, 1.5));
@@ -40,6 +43,7 @@ int main(int argc, char const *argv[])
     curves.push_back(std::make_unique<Helix>(2.0, 0.3));
     curves.push_back(std::make_unique<Circle>(5.0));
 
+    // Print information about all curves at t = π/4
     const double t = M_1_PI / 4;
     std::cout << "\t=== All Curves ===\n";
     for (const auto &curve : curves)
@@ -47,6 +51,7 @@ int main(int argc, char const *argv[])
         printCurveInfo(*curve, t);
     }
 
+    // Container for circles
     std::vector<Circle*> circles;
     for (const auto &curve : curves)
     {
@@ -56,16 +61,19 @@ int main(int argc, char const *argv[])
         }
     }
     
+    // Sort circles by radius
     std::sort(circles.begin(), circles.end(), [](Circle* a, Circle* b) {
             return a->getRadius() < b->getRadius();
     });
 
+    // Output sorted circles
     std::cout << "\t=== Sorted Circles ===\n";
     for (const auto &circle : circles)
     {
         std::cout << "Circle radius: " << circle->getRadius() << "\n";
     }
     
+    // Calculate the sum of the radii of all circles
     double totalRadius = 0.0;
     for (const auto &circle : circles)
     {
