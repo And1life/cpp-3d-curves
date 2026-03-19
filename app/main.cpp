@@ -12,9 +12,18 @@ void printCurveInfo(const Curve& curve, double t)
 {
     Point3D point = curve.getPoint(t);
     Point3D derivative = curve.getDerivative(t);
+    std::cout << "-------------------------------\n";
+    std::cout << "Curve Info at t = " << t << "\n";
+    std::cout << "Point:    ("
+              << point.x << ", "
+              << point.y << ", "
+              << point.z << ")\n";
+    std::cout << "Derivative: ("
+              << derivative.x << ", "
+              << derivative.y << ", "
+              << derivative.z << ")\n";
+    std::cout << "-------------------------------\n\n";
 
-    std::cout << "Point at t = " << t << ": (" << point.x << ", " << point.y << ", " << point.z <<")\n";
-    std::cout << "Derivative at t=" << t << ": (" << derivative.x << ", " << derivative.y << ", " << derivative.z << ")\n";
 }
 
 int main(int argc, char const *argv[])
@@ -28,10 +37,11 @@ int main(int argc, char const *argv[])
     curves.push_back(std::make_unique<Circle>(1.5));
     curves.push_back(std::make_unique<Ellipse>(2.5, 1.0));
     curves.push_back(std::make_unique<Circle>(4.0));
+    curves.push_back(std::make_unique<Helix>(2.0, 0.3));
     curves.push_back(std::make_unique<Circle>(5.0));
 
     const double t = M_1_PI / 4;
-    std::cout << "=== All Curves ===\n";
+    std::cout << "\t=== All Curves ===\n";
     for (const auto &curve : curves)
     {
         printCurveInfo(*curve, t);
@@ -50,10 +60,10 @@ int main(int argc, char const *argv[])
             return a->getRadius() < b->getRadius();
     });
 
-    std::cout << "=== Sorted Circles ===\n";
+    std::cout << "\t=== Sorted Circles ===\n";
     for (const auto &circle : circles)
     {
-        std::cout << "Circle with radius: " << circle->getRadius() << "\n";
+        std::cout << "Circle radius: " << circle->getRadius() << "\n";
     }
     
     double totalRadius = 0.0;
