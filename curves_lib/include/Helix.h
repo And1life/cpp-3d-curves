@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "Curve.h"
-#include <math.h>
+#include <cmath>
 
 class Helix : public Curve
 {

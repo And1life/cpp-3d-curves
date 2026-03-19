@@ -17,3 +17,9 @@ target_include_directories(curves_lib PUBLIC
 add_executable(curves_app app/main.cpp)
 
 target_link_libraries(curves_app curves_lib)
+
+option(BUILD_TESTS "Build tests" OFF)
+if(BUILD_TESTS)
+    enable_testing()
+    add_subdirectory(tests)
+endif()
