@@ -80,6 +80,26 @@ cmake --build .
 ./curves_app
 ```
 ---
+## 🧪 Testing
+
+### Step 1: 🔨 Build with tests
+
+```bash
+mkdir build && cd build
+cmake -DBUILD_TESTS=ON ..
+cmake --build .
+```
+### Step 2: Run Tests
+
+```bash
+ctest --verbose
+```
+### Step 3: Run a specific Test
+
+```bash
+ctest -R CircleTest
+```
+---
 
 ## 💡 Example Output
 
@@ -107,7 +127,7 @@ Total radius of all circles: 3.5
 
 Possible improvements and extensions:
 
-- [ ] Unit Testing
+- [x] Unit Testing
 - [ ] Additional Curve Types
 - [ ] Visualization
 
